@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Travelo - Plan Your Dream Destination</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- Tailwind Config -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: '#FF6B35', // Orange
+              secondary: '#1E3A5F', // Dark Blue
+              light: '#F7FAFC', // Light Gray
+            },
+            fontFamily: {
+              poppins: ['Poppins', 'sans-serif'],
+              volkhov: ['Volkhov', 'serif'],
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Volkhov:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        font-family: 'Poppins', sans-serif;
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: 'Volkhov', serif;
+      }
+
+      /* Custom styles for smooth transitions */
+        .mobile-menu {
+            transition: transform 0.3s ease-in-out;
+        }
+        .mobile-menu.hidden {
+            transform: translateX(-100%);
+        }
+        /* Navigation link underline animation */
+        .nav-link {
+            position: relative;
+            padding-bottom: 4px;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(to right, #FF6B35, #fcfcfc);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Smooth transition */
+        * {
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+    </style>
+  </head>
+  <body class="bg-white">
+    <section id="ransika-section">
+
+        <!-- Navigation Bar -->
+    <nav class="navbar-glass fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-2 sm:px-4 lg:px-1">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3 group cursor-pointer">
+                    <div class="relative">
+                        <div class="absolute inset-0 bg-gradient-to-r from-black to-orange-500 rounded-full blur opacity-75 group-hover:opacity-100 transition duration-300"></div>
+                        <div class="relative bg-gradient-to-r from-black to-orange-500 p-2 rounded-full">
+                            <i class="fas fa-plane text-white text-xl"></i>
+                        </div>
+                    </div>
+                    <span class="text-2xl font-bold bg-gradient-to-r from-black to-orange-600 bg-clip-text text-transparent group-hover:from-black group-hover:to-orange-500 transition duration-300">Travelo.</span>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-1">
+                    <a href="#" class="nav-link text-orange-700 hover:text-orange-600 font-medium px-4 py-2 rounded-lg hover:bg-orange-50 transition-all duration-300">Home</a>
+                    <a href="#" class="nav-link text-gray-700 hover:text-orange-600 font-medium px-4 py-2 rounded-lg hover:bg-orange-50 transition-all duration-300">About</a>
+                    <a href="#" class="nav-link text-gray-700 hover:text-orange-600 font-medium px-4 py-2 rounded-lg hover:bg-orange-50 transition-all duration-300">Destination</a>
+                    <a href="#" class="nav-link text-gray-700 hover:text-orange-600 font-medium px-4 py-2 rounded-lg hover:bg-orange-50 transition-all duration-300">Tour</a>
+                    <a href="#" class="nav-link text-gray-700 hover:text-orange-600 font-medium px-4 py-2 rounded-lg hover:bg-orange-50 transition-all duration-300">Blog</a>
+                </div>
+
+                <!-- Desktop Buttons -->
+                <div class="hidden md:flex items-center space-x-3">
+                    <button class="text-gray-700 hover:text-orange-600 font-medium px-4 py-2 rounded-lg hover:bg-orange-50 transition-all duration-300">Login</button>
+                    <button class="bg-gradient-to-r from-black to-orange-500 text-white px-6 py-2.5 rounded-lg font-semibold hover:from-black hover:to-orange-600 transition-all duration-300 shadow-lg shadow-black/30 hover:shadow-black/50 hover:scale-105 transform">
+                        Sign up
+                    </button>
+                </div>
+
+                <!-- Mobile Hamburger -->
+                <div class="md:hidden flex items-center space-x-2">
+                    <button id="mobile-menu-btn" class="text-gray-700 p-2 rounded-lg hover:bg-orange-50 transition-all duration-300">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu hidden md:hidden fixed top-20 right-0 w-72 h-120 bg-orange-50/95 backdrop-blur-lg shadow-2xl z-40 border-r border-black/10">
+            <div class="flex flex-col p-6 space-y-2">
+                <a href="#" class="text-gray-700 hover:text-orange-600 font-medium px-4 py-3 rounded-lg hover:bg-gradient-to-r hover:from-orange-50 hover:to-orange-100 transition-all duration-300 border-l-4 border-transparent hover:border-orange-500">
+                    <i class="fas fa-home mr-3 text-orange-500"></i>Home
+                </a>
+                <a href="#" class="text-gray-700 hover:text-orange-600 font-medium px-4 py-3 rounded-lg hover:bg-gradient-to-r hover:from-orange-50 hover:to-orange-100 transition-all duration-300 border-l-4 border-transparent hover:border-orange-500">
+                    <i class="fas fa-info mr-3 text-orange-500"></i>About
+                </a>
+                <a href="#" class="text-gray-700 hover:text-orange-600 font-medium px-4 py-3 rounded-lg hover:bg-gradient-to-r hover:from-orange-50 hover:to-orange-100 transition-all duration-300 border-l-4 border-transparent hover:border-orange-500">
+                    <i class="fas fa-map-marker-alt mr-3 text-orange-500"></i>Destination
+                </a>
+                <a href="#" class="text-gray-700 hover:text-orange-600 font-medium px-4 py-3 rounded-lg hover:bg-gradient-to-r hover:from-orange-50 hover:to-orange-100 transition-all duration-300 border-l-4 border-transparent hover:border-orange-500">
+                    <i class="fas fa-route mr-3 text-orange-500"></i>Tour
+                </a>
+                <a href="#" class="text-gray-700 hover:text-orange-600 font-medium px-4 py-3 rounded-lg hover:bg-gradient-to-r hover:from-orange-50 hover:to-orange-100 transition-all duration-300 border-l-4 border-transparent hover:border-orange-500">
+                    <i class="fas fa-blog mr-3 text-orange-500"></i>Blog
+                </a>
+                <div class="pt-6 mt-6 border-t border-black/10 space-y-3">
+                    <button class="w-full text-left text-gray-700 hover:text-black font-medium px-4 py-3 rounded-lg hover:bg-black/5 transition-all duration-300">
+                        <i class="fas fa-sign-in-alt mr-3 text-black"></i>Login
+                    </button>
+                    <button class="w-full bg-gradient-to-r from-black to-orange-500 text-white px-6 py-3 rounded-lg font-semibold hover:from-black hover:to-orange-600 transition-all duration-300 shadow-lg shadow-black/30 hover:shadow-black/50 hover:scale-105 transform">
+                        <i class="fas fa-user-plus mr-2"></i>Sign up
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+                <!-- Hero Section (large image with overlaid heading) -->
+                <section class="relative mt-20">
+                    <div class="max-w-7xl mx-auto px-2 sm:px-4 lg:px-1">
+                        <div class="relative w-full">
+                            <div class="relative w-full h-56 sm:h-64 md:h-80 lg:h-[580px] overflow-hidden rounded-2xl shadow-lg">
+                                <!-- Background image -->
+                                <img src="https://images.unsplash.com/photo-1760979219054-be8187ca3d47?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" class="w-full h-full object-cover">
+
+                                <!-- Overlay: white gradient from left to transparent (right) -->
+                                <div class="absolute inset-0 bg-gradient-to-r from-white via-white/50 to-transparent"></div>
+                                <!-- overlay: default inline (stack) on mobile, absolute overlay on md+ -->
+                                <div class="relative md:absolute md:left-4 md:top-1/2 md:transform md:-translate-y-1/2 max-w-3xl text-left text-white px-3 py-4 sm:px-4 sm:py-6 md:px-0 md:py-0">
+                                    <h1 class="text-2xl sm:text-3xl md:text-5xl lg:text-6xl text-black font-extrabold leading-tight mb-2 sm:mb-4">
+                                        Plan Your Dream Destination With <span class="text-orange-500">Travelo</span>
+                                    </h1>
+                                    <p class="text-xs sm:text-sm md:text-lg text-black/80 mb-4 sm:mb-6 leading-relaxed max-w-xl">A Team of experienced tourism professionals will provide you with the best advice and tips for your desire place.</p>
+                                    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4">
+                                        <button class="w-full sm:w-auto bg-orange-500 hover:bg-orange-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-md font-semibold shadow text-sm sm:text-base">Explore Now ➜</button>
+                                        <button class="w-full sm:w-auto flex items-center justify-center sm:justify-start gap-2 bg-white/20 text-black px-4 sm:px-4 py-2 sm:py-3 rounded-md hover:bg-white/30 transition text-sm sm:text-base">
+                                            <i class="fas fa-play-circle text-orange-500"></i>
+                                            <span>Watch Video</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Floating Search Widget (moved a bit lower) -->
+                    <div class="absolute -bottom-14 sm:-bottom-16 left-2 sm:left-4 md:left-40 w-full max-w-4xl px-2 sm:px-4 z-20">
+                        <div class="bg-white rounded-lg shadow-2xl p-4 sm:p-6 border border-gray-200">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-10">
+                                <div class="sm:col-span-1">
+                                    <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-2">
+                                        <i class="fas fa-map-marker-alt bg-gradient-to-r from-black to-orange-500 bg-clip-text text-transparent mr-2"></i>Location
+                                    </label>
+                                    <input type="text" placeholder="Where are you going?" class="w-full px-3 py-2 sm:px-4 sm:py-2 text-xs sm:text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500">
+                                </div>
+                                <div class="sm:col-span-1">
+                                    <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-2">
+                                        <i class="fas fa-calendar bg-gradient-to-r from-black to-orange-500 bg-clip-text text-transparent mr-2"></i>Date
+                                    </label>
+                                    <input type="date" class="w-full px-3 py-2 sm:px-4 sm:py-2 text-xs sm:text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500">
+                                </div>
+                                <div class="sm:col-span-1">
+                                    <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-2">
+                                        <i class="fas fa-users bg-gradient-to-r from-black to-orange-500 bg-clip-text text-transparent mr-2"></i>Guest
+                                    </label>
+                                    <input type="number" placeholder="Number of guest" class="w-full px-3 py-2 sm:px-4 sm:py-2 text-xs sm:text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500">
+                                </div>
+                                <div class="sm:col-span-1 flex items-end">
+                                    <button class="w-full bg-orange-500 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-md hover:bg-orange-600 transition font-semibold text-xs sm:text-base">
+                                        Explore Now
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+    <!-- JavaScript -->
+    <script>
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        // Mobile Menu Toggle
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+    </script>
+  </body>
+</html>
